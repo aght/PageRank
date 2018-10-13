@@ -56,4 +56,31 @@ int Matrix::get_rows() const { return rows; }
 
 // Gets the number of columns in the matrix
 int Matrix::get_cols() const { return cols; }
+
+// Sets all values in matrix to 0
+Matrix &Matrix::clear() {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            m[i][j] = 0;
+        }
+    }
+
+    return *this;
+}
+
+// Gets a value from the matrix by index
+double Matrix::get_value(int row, int col) const {
+    if (row <= 0 || row >= rows || col <= 0 || col >= cols) {
+        throw std::out_of_range("invalid index");
+    }
+    return m[row][col];
+}
+
+// Sets a value from the matrix by index
+void Matrix::set_value(int row, int col, double n) {
+    if (row <= 0 || row >= rows || col <= 0 || col >= cols) {
+        throw std::out_of_range("invalid index");
+    }
+    m[row][col] = n;
+}
 }
