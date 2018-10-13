@@ -83,4 +83,108 @@ void Matrix::set_value(int row, int col, double n) {
     }
     m[row][col] = n;
 }
+
+// Returns a row of the matrix, which by the user can index again to get a value of the matrix
+// Similar to indexing a 2D array
+std::vector<double> &Matrix::operator[](int index) {
+    return m[index];
+}
+
+// Returns a row of the matrix, which by the user can index again to get a value of the matrix
+// Similar to indexing a 2D array
+const std::vector<double> &Matrix::operator[](int index) const {
+    return m[index];
+}
+
+// Assignment operator
+Matrix &Matrix::operator=(Matrix rhs) {
+    std::swap(this->m, rhs.m);
+    std::swap(this->cols, rhs.cols);
+    std::swap(this->rows, rhs.rows);
+
+    return *this;
+}
+
+// Multiplies a matrix by a value
+Matrix &Matrix::operator*=(const double rhs) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            m[i][j] *= rhs;
+        }
+    }
+
+    return *this;
+}
+
+// Multiplies a matrix by a matrix
+Matrix &Matrix::operator*=(const Matrix &rhs) {
+    if (cols != rhs.rows) {
+        throw std::invalid_argument("number of columns in matrix A and number of rows in matrix B must match");
+    }
+
+    std::vector<std::vector<double>> p(rows, std::vector<double>(rhs.cols));
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < rhs.cols; j++) {
+            for (int k = 0; k < cols; k++) {
+                p[i][j] += m[i][k] * rhs.m[k][j];
+            }
+        }
+    }
+
+    cols = rhs.cols;
+    m = p;
+
+    return *this;
+}
+
+// Adds this matrix to another matrix
+Matrix &Matrix::Matrix::operator+=(const Matrix &rhs) {
+    if (rows != rhs.rows && cols != rhs.cols) {
+        throw std::invalid_argument("matrices must be of the same dimensions");
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            m[i][j] += rhs[i][j];
+        }
+    }
+
+    return *this;
+}
+
+// (Postfix) Increments all values inside matrix by 1
+Matrix &Matrix::operator++() {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            m[i][j]++;
+        }
+    }
+
+    return *this;
+}
+
+// (Postfix) Decrements all values inside matrix by 1
+Matrix &Matrix::operator--() {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            m[i][j]--;
+        }
+    }
+
+    return *this;
+}
+
+// (Prefix) Increments all values inside matrix by 1
+Matrix Matrix::Matrix::operator++(int) {
+    Matrix tmp(*this);
+    operator++();
+    return tmp;
+}
+
+// (Prefix) Decrements all values inside matrix by 1
+Matrix Matrix::Matrix::operator--(int) {
+    Matrix tmp(*this);
+    operator--();
+    return tmp;
 }
