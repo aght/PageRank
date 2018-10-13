@@ -91,12 +91,18 @@ public:
 
     // (Prefix) Decrements all values inside matrix by 1
     Matrix operator--(int);
+
+    // Prints matrix to ostream
+    friend std::ostream &operator<<(std::ostream &os, const Matrix &matrix);
+
+    // Checks if two matrix are the same by comparing values and matrix size
+    friend bool operator==(const Matrix &lhs, const Matrix &rhs);
 };
 
 // Prints matrix to ostream
 inline std::ostream &operator<<(std::ostream &os, const Matrix &matrix) {
-    for (int i = 0; i < matrix.get_rows(); i++) {
-        for (int j = 0; j < matrix.get_cols(); j++) {
+    for (int i = 0; i < matrix.rows; i++) {
+        for (int j = 0; j < matrix.cols; j++) {
             os << matrix[i][j] << "\t";
         }
         os << std::endl;
@@ -109,9 +115,9 @@ inline std::ostream &operator<<(std::ostream &os, const Matrix &matrix) {
 inline bool operator==(const Matrix &lhs, const Matrix &rhs) {
     const double TOLERANCE = 0.00001;
 
-    if (lhs.get_rows() == rhs.get_rows() && lhs.get_cols() == rhs.get_cols()) {
-        for (int i = 0; i < lhs.get_rows(); i++) {
-            for (int j = 0; j < lhs.get_cols(); j++) {
+    if (lhs.rows == rhs.rows && lhs.cols == rhs.cols) {
+        for (int i = 0; i < lhs.rows; i++) {
+            for (int j = 0; j < lhs.cols; j++) {
                 return (std::abs(rhs[i][j] - lhs[i][j])) < TOLERANCE;
             }
         }
