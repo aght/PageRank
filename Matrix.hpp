@@ -93,4 +93,62 @@ public:
     Matrix operator--(int);
 };
 
+// Prints matrix to ostream
+inline std::ostream &operator<<(std::ostream &os, const Matrix &matrix) {
+    for (int i = 0; i < matrix.get_rows(); i++) {
+        for (int j = 0; j < matrix.get_cols(); j++) {
+            os << matrix[i][j] << "\t";
+        }
+        os << std::endl;
+    }
+
+    return os;
+}
+
+// Checks if two matrix are the same by comparing values and matrix size
+inline bool operator==(const Matrix &lhs, const Matrix &rhs) {
+    const double TOLERANCE = 0.00001;
+
+    if (lhs.get_rows() == rhs.get_rows() && lhs.get_cols() == rhs.get_cols()) {
+        for (int i = 0; i < lhs.get_rows(); i++) {
+            for (int j = 0; j < lhs.get_cols(); j++) {
+                return (std::abs(rhs[i][j] - lhs[i][j])) < TOLERANCE;
+            }
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
+// Opposite of equality operator
+inline bool operator!=(const Matrix &lhs, const Matrix &rhs) {
+    return !operator==(lhs, rhs);
+}
+
+// Adds two matrices
+inline Matrix operator+(Matrix lhs, const Matrix &rhs) {
+    lhs += rhs;
+    return lhs;
+}
+
+// Multiplies matrix by a value
+inline Matrix operator*(Matrix lhs, const double rhs) {
+    lhs *= rhs;
+    return lhs;
+}
+
+// Multiplies matrix by a value
+inline Matrix operator*(double lhs, Matrix rhs) {
+    rhs *= lhs;
+    return rhs;
+}
+
+// Multiplies two matrices
+inline Matrix operator*(Matrix lhs, const Matrix &rhs) {
+    lhs *= rhs;
+    return lhs;
+}
+
 #endif //PAGERANK_MATRIX_HPP
