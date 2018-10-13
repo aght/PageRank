@@ -50,3 +50,10 @@ Matrix::Matrix(double arr[], int size) {
         }
     }
 }
+
+// Gets the number of rows in the matrix
+int Matrix::get_rows() const { return rows; }
+
+// Gets the number of columns in the matrix
+int Matrix::get_cols() const { return cols; }
+}
