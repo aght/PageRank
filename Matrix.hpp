@@ -97,6 +97,21 @@ public:
 
     // Checks if two matrix are the same by comparing values and matrix size
     friend bool operator==(const Matrix &lhs, const Matrix &rhs);
+
+    // Opposite of equality operator
+    friend bool operator!=(const Matrix &lhs, const Matrix &rhs);
+
+    // Adds two matrices
+    friend Matrix operator+(Matrix lhs, const Matrix &rhs);
+
+    // Multiplies matrix by a value
+    friend Matrix operator*(Matrix lhs, const double rhs);
+
+    // Multiplies matrix by a value
+    friend Matrix operator*(double lhs, Matrix rhs);
+
+    // Multiplies two matrices
+    friend Matrix operator*(Matrix lhs, const Matrix &rhs);
 };
 
 // Prints matrix to ostream

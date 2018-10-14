@@ -24,14 +24,12 @@ void print_results(const Matrix& m) {
 }
 
 int main() {
-    const double factor = 0.85;
-
     std::vector<std::string> string_matrix = TextFileReader::read_file("../connectivity.txt");
 
     double *connectivity_matrix = to_double_array(string_matrix);
     Matrix g(connectivity_matrix, string_matrix.size());
 
-    Matrix rank = PageRank::page_rank(g, factor);
+    Matrix rank = PageRank::page_rank(g);
 
     print_results(rank);
 

@@ -26,7 +26,7 @@ private:
 public:
 
     //Runs the page rank algorithm
-    static Matrix page_rank(const Matrix& matrix, double p);
+    static Matrix page_rank(const Matrix& matrix, double p = 0.85);
 };
 
 
