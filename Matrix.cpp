@@ -153,6 +153,21 @@ Matrix &Matrix::Matrix::operator+=(const Matrix &rhs) {
     return *this;
 }
 
+// Subtracts this matrix from another matrix
+Matrix &Matrix::operator-=(const Matrix &rhs) {
+    if (rows != rhs.rows && cols != rhs.cols) {
+        throw std::invalid_argument("matrices must be of the same dimensions");
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            m[i][j] -= rhs[i][j];
+        }
+    }
+
+    return *this;
+}
+
 // (Postfix) Increments all values inside matrix by 1
 Matrix &Matrix::operator++() {
     for (int i = 0; i < rows; i++) {

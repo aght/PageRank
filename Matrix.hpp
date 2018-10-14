@@ -80,6 +80,9 @@ public:
     // Adds this matrix to another matrix
     Matrix &operator+=(const Matrix &rhs);
 
+    // Subtracts this matrix from another matrix
+    Matrix &operator-=(const Matrix &rhs);
+
     // (Postfix) Increments all values inside matrix by 1
     Matrix &operator++();
 
@@ -151,6 +154,11 @@ inline bool operator!=(const Matrix &lhs, const Matrix &rhs) {
 // Adds two matrices
 inline Matrix operator+(Matrix lhs, const Matrix &rhs) {
     lhs += rhs;
+    return lhs;
+}
+
+inline Matrix operator-(Matrix lhs, const Matrix &rhs) {
+    lhs -= rhs;
     return lhs;
 }
 
