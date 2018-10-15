@@ -5,6 +5,8 @@
 #include "PageRank.hpp"
 #include <iomanip>
 
+// Converts a std::vector<std::string> to array of double
+// Returns a a double pointer
 double *to_double_array(const std::vector<std::string> &words) {
     double *arr = new double[words.size()];
     for (unsigned i = 0; i < words.size(); i++) {
@@ -14,6 +16,7 @@ double *to_double_array(const std::vector<std::string> &words) {
     return arr;
 }
 
+// Prints the rsults of the page rank algorithm
 void print_results(const Matrix &m) {
     const double factor = 100;
     const int printWidth = 6;
