@@ -16,7 +16,7 @@ double *to_double_array(const std::vector<std::string> &words) {
     return arr;
 }
 
-// Prints the rsults of the page rank algorithm
+// Prints the results of the page rank algorithm
 void print_results(const Matrix &m) {
     const double factor = 100;
     const int printWidth = 6;
