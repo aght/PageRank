@@ -5,7 +5,7 @@
 #include "PageRank.hpp"
 #include <iomanip>
 
-double* to_double_array(const std::vector<std::string>& words) {
+double *to_double_array(const std::vector<std::string> &words) {
     double *arr = new double[words.size()];
     for (unsigned i = 0; i < words.size(); i++) {
         arr[i] = std::stod(words[i]);
@@ -14,13 +14,14 @@ double* to_double_array(const std::vector<std::string>& words) {
     return arr;
 }
 
-void print_results(const Matrix& m) {
+void print_results(const Matrix &m) {
     const double factor = 100;
+    const int printWidth = 6;
     std::cout << std::fixed << std::setprecision(2);
-    std::cout << "Page A: " << m[0][0] * factor << "%" << '\n';
-    std::cout << "Page B: " << m[1][0] * factor << "%" << '\n';
-    std::cout << "Page C: " << m[2][0] * factor << "%" << '\n';
-    std::cout << "Page D: " << m[3][0] * factor << "%" << '\n';
+    std::cout << "Page A: " << std::setw(printWidth) << m[0][0] * factor << "%" << '\n';
+    std::cout << "Page B: " << std::setw(printWidth) << m[1][0] * factor << "%" << '\n';
+    std::cout << "Page C: " << std::setw(printWidth) << m[2][0] * factor << "%" << '\n';
+    std::cout << "Page D: " << std::setw(printWidth) << m[3][0] * factor << "%" << '\n';
 }
 
 int main() {
